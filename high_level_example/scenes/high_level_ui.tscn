@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ucabdyrsn7bt"]
 
-[ext_resource type="Script" path="res://high_level_example/scripts/high_level_client_ui.gd" id="1_ynxo7"]
+[ext_resource type="Script" uid="uid://lbdlxbf7hb8p" path="res://high_level_example/scripts/clientui.gd" id="1_ynxo7"]
 
 [node name="HighLevelUI" type="Control"]
 layout_mode = 3

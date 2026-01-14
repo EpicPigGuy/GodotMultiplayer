@@ -12,12 +12,12 @@ config_version=5
 
 config/name="Godot Multiplayer"
 run/main_scene="res://high_level_example/scenes/high_level_example.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-HighLevelNetworkHandler="*res://high_level_example/scripts/high_level_network_handler.gd"
+HighLevelNetworkHandler="*res://high_level_example/scripts/handler.gd"
 
 [dotnet]
 

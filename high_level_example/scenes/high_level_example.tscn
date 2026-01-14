@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://dytxckecq42lh"]
 
-[ext_resource type="Script" path="res://high_level_example/scripts/high_level_player_spawner.gd" id="1_xa5q7"]
-[ext_resource type="PackedScene" uid="uid://dqp3koxevnhjm" path="res://high_level_example/scenes/high_level_network_player.tscn" id="2_cqmdx"]
+[ext_resource type="Script" uid="uid://c1g12cc12wuaa" path="res://high_level_example/scripts/spawwner.gd" id="1_xa5q7"]
+[ext_resource type="PackedScene" uid="uid://dqp3koxevnhjm" path="res://high_level_example/scenes/player.tscn" id="2_cqmdx"]
 [ext_resource type="PackedScene" uid="uid://ucabdyrsn7bt" path="res://high_level_example/scenes/high_level_ui.tscn" id="2_evg4q"]
 [ext_resource type="Texture2D" uid="uid://c4vcdpw7wmsml" path="res://brackeys_platformer_assets/sprites/world_tileset.png" id="4_cdg8s"]
 
@@ -181,7 +181,7 @@ sources/1 = SubResource("TileSetAtlasSource_yl0td")
 [node name="HighLevelUI" parent="." instance=ExtResource("2_evg4q")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://high_level_example/scenes/high_level_network_player.tscn")
+_spawnable_scenes = PackedStringArray("uid://dqp3koxevnhjm")
 spawn_path = NodePath("..")
 script = ExtResource("1_xa5q7")
 network_player = ExtResource("2_cqmdx")

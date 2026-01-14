@@ -1,3 +1,4 @@
-res://high_level_example/scenes/high_level_ui.tscn
 res://high_level_example/scenes/high_level_example.tscn
-res://high_level_example/scenes/high_level_network_player.tscn
+res://high_level_example/scenes/player.tscn
+res://high_level_example/scenes/high_level_ui.tscn
+res://high_level_example/scripts/player.gd
