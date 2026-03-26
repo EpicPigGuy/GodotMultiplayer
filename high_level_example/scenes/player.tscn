@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqp3koxevnhjm"]
 
-[ext_resource type="Script" uid="uid://c8phw0k238svi" path="res://high_level_example/scripts/player.gd" id="1_0yi72"]
+[ext_resource type="Script" path="res://high_level_example/scripts/player.gd" id="1_0yi72"]
 [ext_resource type="Texture2D" uid="uid://c5s1odcdssod8" path="res://icon.svg" id="2_7xfmq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6rbc"]
@@ -20,9 +20,9 @@ texture = ExtResource("2_7xfmq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j6rbc")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_74wbi")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_74wbi")
