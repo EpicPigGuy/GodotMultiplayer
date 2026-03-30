@@ -52,4 +52,5 @@ func _physics_process(delta: float) -> void:
 
 @rpc("any_peer", "call_local")
 func callPlayer(input_pos: Vector2) -> void:
-	position = Vector2(input_pos.x, input_pos.y + (sequential_id - 2))
+	print("Teleport on peer:", multiplayer.get_unique_id())
+	position = input_pos + Vector2(0, (sequential_id - 2) * 50)
