@@ -1,28 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqp3koxevnhjm"]
+[gd_scene format=3 uid="uid://dqp3koxevnhjm"]
 
-[ext_resource type="Script" path="res://high_level_example/scripts/player.gd" id="1_0yi72"]
-[ext_resource type="Texture2D" uid="uid://c5s1odcdssod8" path="res://icon.svg" id="2_7xfmq"]
+[ext_resource type="Script" uid="uid://c8phw0k238svi" path="res://high_level_example/scripts/player.gd" id="1_0yi72"]
+[ext_resource type="Texture2D" uid="uid://blywc035gj1r6" path="res://Sprite-0001.png" id="2_fnwin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6rbc"]
-size = Vector2(128, 128)
+size = Vector2(128, 127)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_74wbi"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="HighLevelNetworkPlayer" type="CharacterBody2D"]
+[node name="HighLevelNetworkPlayer" type="CharacterBody2D" unique_id=44311497]
 script = ExtResource("1_0yi72")
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_7xfmq")
+[node name="Icon" type="Sprite2D" parent="." unique_id=422752806]
+scale = Vector2(4, 4)
+texture = ExtResource("2_fnwin")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=506612874]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_j6rbc")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1626573905]
 zoom = Vector2(0.5, 0.5)
+process_callback = 0
 position_smoothing_enabled = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=554303907]
 replication_config = SubResource("SceneReplicationConfig_74wbi")
