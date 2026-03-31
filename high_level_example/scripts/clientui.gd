@@ -6,8 +6,8 @@ func _on_server_pressed() -> void:
 	if isClicked:
 		return
 	isClicked = true
-	HighLevelNetworkHandler.start_server()
-	get_tree().change_scene_to_file("res://high_level_example/scenes/high_level_example.tscn")
+	HighLevelNetworkHandler.start_server()  # Ensure this is correctly defined elsewhere
+	get_tree().change_scene_to_file("res://high_level_example/scenes/S1.tscn")
 
 func _on_client_pressed() -> void:
 	if isClicked:
@@ -22,7 +22,7 @@ func _on_client_pressed() -> void:
 
 func _on_connected_to_server() -> void:
 	print("Connected to server")
-	get_tree().change_scene_to_file("res://high_level_example/scenes/high_level_example.tscn")
+	get_tree().change_scene_to_file("res://high_level_example/scenes/S1.tscn")
 
 func _on_connection_failed() -> void:
 	print("Connection failed")

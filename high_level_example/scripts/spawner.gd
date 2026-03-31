@@ -1,7 +1,6 @@
 extends MultiplayerSpawner
 
 @export var network_player: PackedScene = preload("res://high_level_example/scenes/player.tscn")
-
 var player_count: int = 0
 
 func _ready() -> void:

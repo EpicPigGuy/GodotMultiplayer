@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://c8phw0k238svi" path="res://high_level_example/scripts/player.gd" id="1_0yi72"]
 [ext_resource type="Texture2D" uid="uid://blywc035gj1r6" path="res://Sprite-0001.png" id="2_fnwin"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6rbc"]
-size = Vector2(128, 127)
+[sub_resource type="CircleShape2D" id="CircleShape2D_fnwin"]
+radius = 65.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_74wbi"]
 properties/0/path = NodePath(".:position")
@@ -19,8 +19,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_fnwin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=506612874]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_j6rbc")
+shape = SubResource("CircleShape2D_fnwin")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1626573905]
 zoom = Vector2(0.5, 0.5)
