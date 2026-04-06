@@ -25,6 +25,7 @@ shape = SubResource("CircleShape2D_fnwin")
 zoom = Vector2(0.5, 0.5)
 process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 6.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=554303907]
 replication_config = SubResource("SceneReplicationConfig_74wbi")

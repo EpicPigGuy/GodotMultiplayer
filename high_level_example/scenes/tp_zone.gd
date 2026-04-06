@@ -3,9 +3,8 @@ extends Area2D
 @onready var multiplayer_spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
 
 var triggered: bool = false
-
-@export var isScene = false
-@export var scenePath = ""
+@export var diffPos: bool = false
+@export var pos: Vector2 = Vector2(100, 100)
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -22,11 +21,10 @@ func _on_body_entered(body: Node2D) -> void:
 	triggered = true
 	print("Triggered once by:", body.name)
 	
-	# Complete the condition here
-	if not isScene:
+	if !diffPos:
 		move_all_players.rpc(global_position)  # or whatever action you want to perform
 	else:
-		changeScene()
+		move_all_players.rpc(pos)
 
 @rpc("authority", "call_local")
 func move_all_players(pos: Vector2) -> void:
@@ -35,11 +33,3 @@ func move_all_players(pos: Vector2) -> void:
 	for player in spawn_node.get_children():
 		if player.has_method("callPlayer"):
 			player.callPlayer(pos)
-
-func changeScene():
-	# Validate scenePath and change scene
-	if scenePath != "" and (scenePath.ends_with(".tscn") or scenePath.ends_with(".scn")):
-		print("Changing to scene:", scenePath)
-		get_tree().change_scene_to_file(scenePath)
-	else:
-		print("Invalid scene path provided: ", scenePath)
