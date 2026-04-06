@@ -1,7 +1,6 @@
-res://high_level_example/scenes/S1.tscn
-res://high_level_example/scripts/clientui.gd
+res://high_level_example/scenes/high_level_ui.tscn
 res://high_level_example/scripts/spawner.gd
-res://high_level_example/scenes/tp_zone.gd
-res://high_level_example/scripts/handler.gd
-res://high_level_example/scripts/player.gd
+res://high_level_example/scenes/S1.tscn
 res://high_level_example/scenes/player.tscn
+res://high_level_example/scenes/tpZone.tscn
+res://high_level_example/scripts/player.gd

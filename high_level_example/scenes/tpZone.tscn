@@ -1,18 +1,18 @@
-[gd_scene format=3 uid="uid://bo08x0cd8esor"]
+[gd_scene load_steps=4 format=3 uid="uid://bo08x0cd8esor"]
 
-[ext_resource type="Script" uid="uid://ccs2comyqsei5" path="res://high_level_example/scenes/tp_zone.gd" id="1_mepjn"]
+[ext_resource type="Script" path="res://high_level_example/scenes/tp_zone.gd" id="1_mepjn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_q3c1a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yi85"]
 
-[node name="TP Zone" type="Area2D" unique_id=1475242104]
+[node name="TP Zone" type="Area2D"]
 scale = Vector2(10, 10)
 script = ExtResource("1_mepjn")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=684401170]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_q3c1a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=864529640]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3yi85")

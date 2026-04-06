@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var sequential_id: int = 0
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var icon: Sprite2D = $Icon
+@onready var under_check: RayCast2D = $UnderCheck
+@onready var under_check_2: RayCast2D = $UnderCheck2
 
 const ACCELERATION: float = 8000.0
 const DECELERATION: float = 10000.0
@@ -41,45 +43,44 @@ func get_gravity_strength() -> float:
 		states.HIGHSPEED: return BASE_GRAVITY
 	return BASE_GRAVITY
 
-func get_floor_collision():
-	for i in get_slide_collision_count():
-		var col = get_slide_collision(i)
-		if col.get_normal().y > 0.7:
-			return col
+# --- NEW: RAYCAST PLAYER DETECTION ---
+func get_player_below() -> CharacterBody2D:
+	var checks = [under_check, under_check_2]
+
+	for ray in checks:
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			if collider != null and collider != self and collider.is_in_group("players"):
+				return collider
+
 	return null
 
 func _physics_process(delta: float) -> void:
 	if get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
 
-	standing_on_player = null
-	var floor_col = get_floor_collision()
 	var on_floor = is_on_floor()
+	standing_on_player = get_player_below()
 
-	if on_floor:
+	# --- GROUND TIMER ---
+	if on_floor or standing_on_player:
 		time_since_grounded = 0
 	else:
 		time_since_grounded += delta
 
-	# --- PLAYER STACKING DETECTION ---
-	if floor_col:
-		var collider = floor_col.get_collider()
-		if collider != null and collider.is_in_group("players"):
-			standing_on_player = collider
-
-	# --- GRAVITY & PLAYER INHERITANCE ---
+	# --- GRAVITY & PLAYER STACKING ---
 	if standing_on_player:
-		# Cancel downward velocity
+		# Stop downward motion
 		if velocity.y > 0:
 			velocity.y = 0
 
-		# Only inherit horizontal motion, NOT vertical
+		# Inherit horizontal movement
 		velocity.x += standing_on_player.velocity.x * 0.9
 
-		# Snap down to prevent floating
-		var their_top = standing_on_player.global_position.y - 32  # adjust for player height
-		if global_position.y < their_top:
-			global_position.y = their_top
+		# Snap to top of player using raycast
+		var collision_point = under_check.get_collision_point()
+		var target_y = collision_point.y - 64  # adjust to your sprite height
+		global_position.y = lerp(global_position.y, target_y, 0.5)
 
 	elif not on_floor:
 		velocity.y += get_gravity_strength() * delta
@@ -107,7 +108,7 @@ func _physics_process(delta: float) -> void:
 
 	# --- RESPAWN ---
 	if position.y >= 1100:
-		position = SPAWN_POS
+		position = SPAWN_POS + Vector2(0, 32)
 
 	# --- SPRITE FLIP ---
 	if velocity.x < 0:
@@ -120,10 +121,3 @@ func callPlayer(input_pos: Vector2) -> void:
 	print("Teleport on peer:", multiplayer.get_unique_id())
 	position = input_pos + Vector2(0, (sequential_id - 2) * 50)
 	SPAWN_POS = input_pos
-
-@rpc("any_peer", "call_local")
-func changeScene(scene_path: String) -> void:
-	if scene_path and (scene_path.ends_with(".tscn") or scene_path.ends_with(".scn")):
-		get_tree().change_scene_to_file(scene_path)
-	else:
-		print("Invalid scene path provided via RPC: ", scene_path)
