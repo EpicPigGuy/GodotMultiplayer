@@ -17,7 +17,7 @@ const JUMP_VEL: float = -1100
 var SPAWN_POS = Vector2(0, 0)
 var time_since_grounded = 0
 
-enum states {NORMAL, LOWGRAV, HIGHSPEED}
+enum states {NORMAL, LOWGRAV, HIGHSPEED, SLOW}
 var state: states = states.NORMAL
 
 var standing_on_player: CharacterBody2D = null
@@ -101,10 +101,11 @@ func _physics_process(delta: float) -> void:
 
 	# --- STATE SWITCHING ---
 	if Input.is_action_just_pressed("cycle"):
-		match state:
-			states.NORMAL: state = states.LOWGRAV
-			states.LOWGRAV: state = states.HIGHSPEED
-			states.HIGHSPEED: state = states.NORMAL
+		if state == states.SLOW:
+			if Engine.time_scale == 1:
+				Engine.time_scale = 0.1
+			else:
+				Engine.time_scale = 1
 
 	# --- RESPAWN ---
 	if position.y >= 1100:
@@ -116,6 +117,12 @@ func _physics_process(delta: float) -> void:
 	elif velocity.x > 0:
 		icon.flip_h = false
 
+
+@rpc("any_peer", "call_local")
+func set_state_rpc(new_state: int) -> void:
+	state = new_state
+	
+	
 @rpc("any_peer", "call_local")
 func callPlayer(input_pos: Vector2) -> void:
 	print("Teleport on peer:", multiplayer.get_unique_id())

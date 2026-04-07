@@ -11,22 +11,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ynxo7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Over" type="Node2D" parent="."]
+scale = Vector2(3, 3)
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Over"]
+offset_right = 163.0
+offset_bottom = 93.0
+
+[node name="Label" type="Label" parent="Over/VBoxContainer"]
 layout_mode = 2
 text = "HIGH-LEVEL VERSION"
 
-[node name="Server" type="Button" parent="VBoxContainer"]
+[node name="Server" type="Button" parent="Over/VBoxContainer"]
 layout_mode = 2
 text = "SERVER"
 
-[node name="Client" type="Button" parent="VBoxContainer"]
+[node name="Client" type="Button" parent="Over/VBoxContainer"]
 layout_mode = 2
 text = "CLIENT"
 
-[connection signal="pressed" from="VBoxContainer/Server" to="." method="_on_server_pressed"]
-[connection signal="pressed" from="VBoxContainer/Client" to="." method="_on_client_pressed"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Over"]
+offset_left = 200.0
+offset_right = 350.0
+offset_bottom = 128.0
+
+[node name="Label" type="Label" parent="Over/VBoxContainer2"]
+layout_mode = 2
+text = "SELECT YOUR MAIN"
+
+[node name="SPEED" type="Button" parent="Over/VBoxContainer2"]
+layout_mode = 2
+text = "SPEED"
+
+[node name="JUMP" type="Button" parent="Over/VBoxContainer2"]
+layout_mode = 2
+text = "JUMP"
+
+[node name="SLOW" type="Button" parent="Over/VBoxContainer2"]
+layout_mode = 2
+text = "SLOW"
+
+[connection signal="pressed" from="Over/VBoxContainer/Server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="Over/VBoxContainer/Client" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="Over/VBoxContainer2/SPEED" to="." method="_on_speed_pressed"]
+[connection signal="pressed" from="Over/VBoxContainer2/JUMP" to="." method="_on_jump_pressed"]
+[connection signal="pressed" from="Over/VBoxContainer2/SLOW" to="." method="_on_slow_pressed"]

@@ -2,6 +2,7 @@ extends Node
 
 const PORT: int = 42096
 var peer: ENetMultiplayerPeer
+var mode
 
 func start_server() -> void:
 	peer = ENetMultiplayerPeer.new()

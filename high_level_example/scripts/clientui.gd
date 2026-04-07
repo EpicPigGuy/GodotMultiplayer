@@ -13,6 +13,8 @@ func _on_client_pressed() -> void:
 	if isClicked:
 		return
 	isClicked = true
+	
+	
 
 	var mp = get_tree().get_multiplayer()
 	mp.connected_to_server.connect(_on_connected_to_server)
@@ -32,3 +34,23 @@ func _on_connection_failed() -> void:
 		mp.connected_to_server.disconnect(_on_connected_to_server)
 	if mp.connection_failed.is_connected(_on_connection_failed):
 		mp.connection_failed.disconnect(_on_connection_failed)
+
+
+func get_player():
+	return get_tree().get_first_node_in_group("players")
+	
+	
+func _on_speed_pressed() -> void:
+	var player = get_player()
+	if player:
+		player.set_state(player.states.HIGHSPEED)
+
+func _on_jump_pressed() -> void:
+	var player = get_player()
+	if player:
+		player.set_state(player.states.LOWGRAV)
+
+func _on_slow_pressed() -> void:
+	var player = get_player()
+	if player:
+		player.set_state(player.states.SLOW)
