@@ -9,9 +9,6 @@ const JUMP_VEL := -1100.0
 var SPAWN_POS := Vector2.ZERO
 var time_since_grounded := 0.0
 var state: int = PlayerState.States.NORMAL
-var standing_on_player: CharacterBody2D = null
-var last_platform_pos: Vector2 = Vector2.ZERO
-var was_standing_on_player := false
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -32,29 +29,13 @@ func _physics_process(delta: float) -> void:
 	if get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
 
-	var on_floor := is_on_floor()
-	standing_on_player = get_player_below()
-	var grounded := on_floor or standing_on_player != null
-
-	if grounded:
+	if is_on_floor():
 		time_since_grounded = 0.0
 	else:
 		time_since_grounded += delta
 
-	# --- PLATFORM RIDING ---
-	if standing_on_player != null and was_standing_on_player:
-		var platform_delta := standing_on_player.global_position - last_platform_pos
-		global_position += platform_delta
-
-	if standing_on_player != null:
-		last_platform_pos = standing_on_player.global_position
-		was_standing_on_player = true
-	else:
-		last_platform_pos = Vector2.ZERO
-		was_standing_on_player = false
-
 	# --- GRAVITY ---
-	if not grounded:
+	if not is_on_floor():
 		velocity.y += PlayerState.get_gravity(state) * delta
 
 	# --- HORIZONTAL INPUT ---
@@ -67,10 +48,7 @@ func _physics_process(delta: float) -> void:
 
 	# --- JUMP ---
 	if Input.is_action_just_pressed("jump") and time_since_grounded < 0.1:
-		velocity.y = JUMP_VEL
-		standing_on_player = null
-		was_standing_on_player = false
-		last_platform_pos = Vector2.ZERO
+		velocity.y = PlayerState.get_jump()
 
 	move_and_slide()
 

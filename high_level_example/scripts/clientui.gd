@@ -41,16 +41,10 @@ func get_player():
 	
 	
 func _on_speed_pressed() -> void:
-	var player = get_player()
-	if player:
-		player.set_state(player.states.HIGHSPEED)
+		PlayerState.set_state(PlayerState.States.HIGHSPEED)
 
 func _on_jump_pressed() -> void:
-	var player = get_player()
-	if player:
-		player.set_state(player.states.LOWGRAV)
+		PlayerState.set_state(PlayerState.States.LOWGRAV)
 
 func _on_slow_pressed() -> void:
-	var player = get_player()
-	if player:
-		player.set_state(player.states.SLOW)
+	PlayerState.set_state(PlayerState.States.SLOW)

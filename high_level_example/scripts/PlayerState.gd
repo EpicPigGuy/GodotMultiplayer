@@ -9,6 +9,7 @@ const BASE_SPEED := 600.0
 const HIGH_SPEED := 800.0
 const BASE_GRAVITY := 3000.0
 const LOW_GRAVITY := 2500.0
+const JUMP_VEL := -1100.0
 
 func get_speed(state: States) -> float:
 	match state:
@@ -19,6 +20,9 @@ func get_gravity(state: States) -> float:
 	match state:
 		States.LOWGRAV: return LOW_GRAVITY
 		_: return BASE_GRAVITY
+		
+func get_jump():
+	return JUMP_VEL
 
 func set_state(new_state: States):
 	current_state = new_state
