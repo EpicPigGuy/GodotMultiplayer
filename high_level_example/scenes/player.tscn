@@ -31,8 +31,40 @@ position_smoothing_speed = 6.0
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_74wbi")
 
-[node name="UnderCheck" type="RayCast2D" parent="."]
-position = Vector2(-56, 36)
+[node name="Overlay" type="Node2D" parent="."]
 
-[node name="UnderCheck2" type="RayCast2D" parent="."]
-position = Vector2(53, 36)
+[node name="Polygon2D" type="Polygon2D" parent="Overlay"]
+polygon = PackedVector2Array(-133, 18, 43, 105, 154, -24, -90, -131, -126, -10, -237, -91, -123, -215, 97, -164, 247, -10, 165, 189, -126, 173, -270, -21, -237, -91, -126, -10)
+
+[node name="Slow" type="RichTextLabel" parent="Overlay"]
+offset_left = -113.0
+offset_top = 51.0
+offset_right = 113.0
+offset_bottom = 138.0
+rotation = 0.608286
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "Slow"
+tab_size = 5
+
+[node name="Speed" type="RichTextLabel" parent="Overlay"]
+offset_left = -7.00001
+offset_top = -181.0
+offset_right = 219.0
+offset_bottom = -94.0
+rotation = 0.400719
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "Speed"
+tab_size = 5
+
+[node name="Jump" type="RichTextLabel" parent="Overlay"]
+offset_left = -250.0
+offset_top = -24.0
+offset_right = -24.0
+offset_bottom = 63.0
+rotation = -1.05331
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "Jump"
+tab_size = 5
