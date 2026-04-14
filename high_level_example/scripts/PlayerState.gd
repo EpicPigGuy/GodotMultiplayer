@@ -11,21 +11,21 @@ const BASE_GRAVITY := 3000.0
 const LOW_GRAVITY := 2500.0
 const JUMP_VEL := -1100.0
 
-func get_speed(state: States) -> float:
-	match state:
+func get_state():
+	return current_state
+
+func player_get_speed() -> float:
+	match current_state:
 		States.HIGHSPEED: return HIGH_SPEED
 	return BASE_SPEED
 
-func get_gravity(state: States) -> float:
-	match state:
+func player_get_gravity() -> float:
+	match current_state:
 		States.LOWGRAV: return LOW_GRAVITY
 		_: return BASE_GRAVITY
 		
-func get_jump():
+func player_get_jump():
 	return JUMP_VEL
 
 func set_state(new_state: States):
 	current_state = new_state
-
-func next_state(current: States) -> States:
-	return ((current + 1) % States.size()) as States

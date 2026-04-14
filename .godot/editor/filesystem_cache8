@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1775518426
+::res://::1776207442
 icon.svg::CompressedTexture2D::6917269279847589583::1768355443::1774481447::1::::<><>::
 README.md::TextFile::-1::1768431610::0::1::::<><>::
-Sprite-0001.png::CompressedTexture2D::3209383732947306289::1775512648::1775512679::1::::<><>::
+Sprite-0001.png::CompressedTexture2D::3209383732947306289::1775512648::1776207445::1::::<><>::
 ::res://brackeys_platformer_assets/::1768401702
 LICENSE & CREDITS.txt::TextFile::-1::1768401702::0::1::::<><>::
 ::res://brackeys_platformer_assets/fonts/::1774481447
@@ -26,15 +26,16 @@ slime_green.png::CompressedTexture2D::5890080322608045539::1768401702::177448144
 slime_purple.png::CompressedTexture2D::7131513946450953870::1768401702::1774481447::1::::<><>::
 world_tileset.png::CompressedTexture2D::6851797380411419307::1768401702::1774481447::1::::<><>::
 ::res://high_level_example/::1768955021
-::res://high_level_example/scenes/::1775518262
+::res://high_level_example/scenes/::1776207416
 debug.gd::GDScript::-1::1774482753::0::1::::<>Node2D<>::
 high_level_ui.tscn::PackedScene::1407907609505032797::1775518207::0::1::::<><>::res://high_level_example/scripts/clientui.gd
-player.tscn::PackedScene::8314967920402955602::1775518262::0::1::::<><>::res://high_level_example/scripts/player.gd<>uid://blywc035gj1r6::::res://Sprite-0001.png
-S1.tscn::PackedScene::8884418069666797329::1775514149::0::1::::<><>::res://high_level_example/scenes/debug.gd<>uid://c4vcdpw7wmsml::::res://brackeys_platformer_assets/sprites/world_tileset.png<>res://high_level_example/scripts/spawner.gd<>uid://bo08x0cd8esor::::res://high_level_example/scenes/tpZone.tscn
-tpZone.tscn::PackedScene::3422719988852101061::1775514149::0::1::::<><>::res://high_level_example/scenes/tp_zone.gd
-tp_zone.gd::GDScript::-1::1775512648::0::1::::<>Area2D<>::
-::res://high_level_example/scripts/::1775518262
-clientui.gd::GDScript::-1::1775517979::0::1::::<>Control<>::
+player.tscn::PackedScene::8314967920402955602::1776207416::0::1::::<><>::uid://c8phw0k238svi::::res://high_level_example/scripts/player.gd<>uid://blywc035gj1r6::::res://Sprite-0001.png
+S1.tscn::PackedScene::8884418069666797329::1776207416::0::1::::<><>::uid://bsfhf666lanha::::res://high_level_example/scenes/debug.gd<>uid://c4vcdpw7wmsml::::res://brackeys_platformer_assets/sprites/world_tileset.png<>uid://dna70lafwnjow::::res://high_level_example/scripts/spawner.gd<>uid://bo08x0cd8esor::::res://high_level_example/scenes/tpZone.tscn
+tpZone.tscn::PackedScene::3422719988852101061::1776207416::0::1::::<><>::uid://ccs2comyqsei5::::res://high_level_example/scripts/tp_zone.gd
+::res://high_level_example/scripts/::1776207416
+clientui.gd::GDScript::-1::1776207416::0::1::::<>Control<>::
 handler.gd::GDScript::-1::1775517288::0::1::::<>Node<>::
-player.gd::GDScript::-1::1775518262::0::1::::<>CharacterBody2D<>::
-spawner.gd::GDScript::-1::1775517285::0::1::::<>MultiplayerSpawner<>::
+player.gd::GDScript::-1::1776207416::0::1::::<>CharacterBody2D<>::
+PlayerState.gd::GDScript::-1::1776207416::0::1::::<>Node<>::
+spawner.gd::GDScript::-1::1775518510::0::1::::<>MultiplayerSpawner<>::
+tp_zone.gd::GDScript::-1::1776207416::0::1::::<>Area2D<>::

@@ -8,7 +8,6 @@ const DECELERATION := 9000.0
 const JUMP_VEL := -1100.0
 var SPAWN_POS := Vector2.ZERO
 var time_since_grounded := 0.0
-var state: int = PlayerState.States.NORMAL
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -36,11 +35,11 @@ func _physics_process(delta: float) -> void:
 
 	# --- GRAVITY ---
 	if not is_on_floor():
-		velocity.y += PlayerState.get_gravity(state) * delta
+		velocity.y += PlayerState.player_get_gravity() * delta
 
 	# --- HORIZONTAL INPUT ---
 	var dir := Input.get_axis("ui_left", "ui_right")
-	var target_speed := dir * PlayerState.get_speed(state)
+	var target_speed = dir * PlayerState.player_get_speed()
 	if dir != 0:
 		velocity.x = move_toward(velocity.x, target_speed, ACCELERATION * delta)
 	else:
@@ -48,13 +47,13 @@ func _physics_process(delta: float) -> void:
 
 	# --- JUMP ---
 	if Input.is_action_just_pressed("jump") and time_since_grounded < 0.1:
-		velocity.y = PlayerState.get_jump()
+		velocity.y = PlayerState.player_get_jump()
 
 	move_and_slide()
 
 	# --- SLOW TIME ---
 	if Input.is_action_just_pressed("cycle"):
-		if state == PlayerState.States.SLOW:
+		if PlayerState.get_state() == PlayerState.States.SLOW:
 			Engine.time_scale = 0.1 if Engine.time_scale == 1 else 1
 
 	# --- RESPAWN ---
@@ -66,10 +65,6 @@ func _physics_process(delta: float) -> void:
 		icon.flip_h = true
 	elif velocity.x > 0:
 		icon.flip_h = false
-
-@rpc("any_peer", "call_local")
-func set_state_rpc(new_state: int) -> void:
-	state = new_state
 
 @rpc("any_peer", "call_local")
 func callPlayer(input_pos: Vector2) -> void:
